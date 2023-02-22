@@ -1,0 +1,38 @@
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #5440d3;
+}
+
+nav {
+  display: none;
+}
+
+.suyati-logo {
+  width: 40%;
+  filter: invert(1) sepia(19%) saturate(590%) hue-rotate(180deg) brightness(193%) contrast(100%);
+}
+
+@media only screen and (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0 10px;
+  }
+}

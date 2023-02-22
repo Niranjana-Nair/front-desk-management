@@ -1,0 +1,68 @@
+.welcome-page-title1 {
+  justify-content: center;
+  display: flex;
+  color: #5440d3;
+}
+.welcome-page-title2 {
+  justify-content: center;
+  display: flex;
+  color: #5440d3;
+}
+
+#wrapper {
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 2em;
+}
+
+.item-color-wrapper {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 2em;
+}
+
+.visitors-block,
+.guests-block,
+.contractors-block {
+  border: 2px solid #8a8ee5;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  color: #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.big-border {
+  border: 2px solid rgba(139, 61, 255) !important;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.visitors-title,
+.guests-title,
+.contractors-title {
+  font-size: large;
+  font-weight: 500;
+  color: #040405;
+}
+.block1 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+.visitors-icon,
+.guests-icon,
+.contractors-icon {
+  font-size: xx-large;
+  color: #584bc7;
+}
