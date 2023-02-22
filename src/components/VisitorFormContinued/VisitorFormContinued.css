@@ -1,0 +1,16 @@
+.MuiOutlinedInput-notchedOutline {
+  border-radius: 50px !important;
+  padding: 0%;
+  height: 6ch;
+}
+
+.id-Icon,
+.building-Icon,
+.person-Icon,
+.date-Icon,
+.dropdown-Icon {
+    color: #ffff;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: #584bc7;
+}

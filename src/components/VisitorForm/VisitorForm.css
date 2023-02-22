@@ -1,0 +1,24 @@
+.MuiOutlinedInput-notchedOutline {
+  border-radius: 50px !important;
+  padding: 0%;
+  height: 6ch;
+}
+
+.user-Icon,
+.location-Icon,
+.email-Icon,
+.call-Icon {
+  color: #ffff;
+  border-radius: 50%;
+  padding: 5px;
+  background-color: #584bc7;
+}
+.camera-Icon {
+  background-color: #5440d3;
+  border-radius: 50%;
+  color: white;
+  padding: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

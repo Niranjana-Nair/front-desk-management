@@ -2,11 +2,13 @@
   justify-content: center;
   display: flex;
   color: #5440d3;
+  font-family: "Roboto", sans-serif;
 }
 .welcome-page-title2 {
   justify-content: center;
   display: flex;
   color: #5440d3;
+  font-family: "Roboto", sans-serif;
 }
 
 #wrapper {
@@ -41,7 +43,9 @@
   display: flex;
   flex-direction: column;
 }
-
+.visitors-block:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 .big-border {
   border: 2px solid rgba(139, 61, 255) !important;
   cursor: pointer;
@@ -54,6 +58,7 @@
   font-size: large;
   font-weight: 500;
   color: #040405;
+  font-family: "Roboto", sans-serif;
 }
 .block1 {
   display: flex;

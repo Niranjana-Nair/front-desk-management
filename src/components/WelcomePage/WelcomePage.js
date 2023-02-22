@@ -11,7 +11,7 @@ function WelcomePage() {
   const Navigate = useNavigate();
 
   const visitorPage = () => {
-    Navigate(`/`);
+    Navigate(`/visitor-form`);
   };
 
   const handleToggleClasslistRef = (ref) => {
