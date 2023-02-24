@@ -9,8 +9,29 @@
 .person-Icon,
 .date-Icon,
 .dropdown-Icon {
-    color: #ffff;
-    border-radius: 50%;
-    padding: 5px;
-    background-color: #584bc7;
+  color: #584bc7;
+}
+.previous-button {
+  float: left;
+}
+.purpose-dropdown {
+  padding-top: 6px;
+  padding-bottom: 10px;
+}
+
+select {
+  background-color: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.589);
+  width: 34ch;
+  padding: 0px 0px 0px 14px;
+  font-size: 16px;
+  height: 5.5ch;
+  border-radius: 50px;
+  margin-left: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.purpose-dropdown-items {
+  padding-left: 6%;
 }

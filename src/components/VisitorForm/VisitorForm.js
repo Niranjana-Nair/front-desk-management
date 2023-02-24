@@ -22,6 +22,9 @@ const VisitorForm = () => {
   const nextPage = () => {
     Navigate(`/visitor-form-continued`);
   };
+  const previousPage = () => {
+    Navigate(`/`);
+  };
   const RequiredTypography = styled(Typography)({
     "&::after": {
       content: '"*"',
@@ -43,12 +46,15 @@ const VisitorForm = () => {
         >
           <HiOutlineCamera className="camera-Icon" size={"10ch"} />
           <Typography
-          fontFamily={"Roboto, sans-serif"}
-
+            fontFamily={"Roboto, sans-serif"}
             variant="h4"
             padding={3}
             textAlign="center"
-    style={{textDecoration:"underline" ,fontWeight:"300"}}
+            style={{
+              textDecoration: "underline",
+              fontWeight: "300",
+              textDecorationThickness: "from-font",
+            }}
             fontSize={40}
           >
             Visitor Form
@@ -57,13 +63,11 @@ const VisitorForm = () => {
             marginLeft="32px"
             variant="subtitle1"
             component="label"
-            
             fontFamily={"Roboto, sans-serif"}
           >
             Name
           </RequiredTypography>
           <TextField
-          
             placeholder="Enter your name"
             id="name"
             name="name"
@@ -85,7 +89,6 @@ const VisitorForm = () => {
             marginLeft="32px"
             variant="subtitle1"
             component="label"
-            
             fontFamily={"Roboto, sans-serif"}
           >
             Email
@@ -112,7 +115,6 @@ const VisitorForm = () => {
             marginLeft="32px"
             variant="subtitle1"
             component="label"
-            
             fontFamily={"Roboto, sans-serif"}
           >
             Place
@@ -161,28 +163,51 @@ const VisitorForm = () => {
               ),
             }}
           />
-          <Button
-            className="next-button"
-            type="submit"
-           
-            sx={{
-              marginTop: 3,
-              borderRadius: 3,
-              fontWeight: 900,
-              backgroundColor: "#e9b30b",
-              display: "block",
-              marginLeft: "auto",
-              width: "fit-content",
-              fontFamily:"Roboto, sans-serif",
-              textTransform:"none"
-            }}
-            onClick={(event) => {
-              nextPage();
-            }}
-            variant="contained"
-          >
-            Next
-          </Button>
+       <div className="previous-and-back-btns">
+            <Button
+              className="previous-button"
+              type="submit"
+              sx={{
+                marginTop: 3,
+                borderRadius: 3,
+                fontWeight: 900,
+                backgroundColor: "#e9b30b",
+                display: "block",
+                marginLeft: "auto",
+                width: "fit-content",
+                fontFamily: "Roboto, sans-serif",
+                textTransform: "none",
+              }}
+              onClick={(event) => {
+                previousPage();
+              }}
+              variant="contained"
+            >
+              Previous
+            </Button>
+
+            <Button
+              className="next-button"
+              type="submit"
+              sx={{
+                marginTop: 3,
+                borderRadius: 3,
+                fontWeight: 900,
+                backgroundColor: "#e9b30b",
+                display: "block",
+                marginLeft: "auto",
+                width: "fit-content",
+                fontFamily: "Roboto, sans-serif",
+                textTransform: "none",
+              }}
+              onClick={(event) => {
+                nextPage();
+              }}
+              variant="contained"
+            >
+              Next
+            </Button>
+          </div>
         </Box>
       </form>
     </div>

@@ -8,13 +8,10 @@
 .location-Icon,
 .email-Icon,
 .call-Icon {
-  color: #ffff;
-  border-radius: 50%;
-  padding: 5px;
-  background-color: #584bc7;
+  color: #584bc7;
 }
 .camera-Icon {
-  background-color: #5440d3;
+  background: linear-gradient(to right, #2745d5 0%, #866bbd 100%);
   border-radius: 50%;
   color: white;
   padding: 15px;

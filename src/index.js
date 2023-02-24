@@ -7,6 +7,9 @@ import { Route, Routes } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import VisitorFormContinued from "./components/VisitorFormContinued/VisitorFormContinued";
 import VisitorForm from "./components/VisitorForm/VisitorForm";
+import VisitorsList from "./components/Admin/VisitorList/VisitorsList";
+import VisitorsList2 from "./components/Admin/VisitorsList2/VisitorsList2";
+import VisitorForm3 from "./components/VisitorForm3/VisitorForm3";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,7 +18,10 @@ root.render(
       <Routes>
         <Route path="/" element={<WelcomePage></WelcomePage>}></Route>
         <Route path="/visitor-form-continued" element={<VisitorFormContinued></VisitorFormContinued>}></Route>
+        <Route path="/visitor-form3" element={<VisitorForm3></VisitorForm3>}></Route>
         <Route path="/visitor-form" element={<VisitorForm></VisitorForm>}></Route>
+        <Route path="/visitors-list" element={<VisitorsList></VisitorsList>}></Route>
+        <Route path="/visitors-list-edit" element={<VisitorsList2></VisitorsList2>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
