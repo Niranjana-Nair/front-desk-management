@@ -1,0 +1,15 @@
+.suyatii-logo {
+  width: 100%;
+}
+
+.checked-in-Text {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+}
+
+.checked-in-Title {
+  font-size: larger;
+  color: #584bc7;
+  font-weight: 700;
+}

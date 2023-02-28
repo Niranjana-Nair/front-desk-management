@@ -1,3 +1,52 @@
 .check-box{
     display: flex;
 }
+.sigCanvas{
+    border: 1px solid grey;
+}
+.clear-btn,.save-btn{
+    background: transparent;
+    text-decoration: none;
+    border: none;
+    color:  #584bc7;
+}
+.clear-save-btns{
+    display: flex;
+    flex-direction: row;
+    column-gap: 215px;
+}
+
+.live-image-capture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .webcam-container {
+    width: 640px;
+    height: 480px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .capture-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .captured-image-container {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .captured-image {
+    max-width: 640px;
+    max-height: 480px;
+  }
+  

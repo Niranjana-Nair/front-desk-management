@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -10,24 +10,24 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-// import { makeStyles } from "@material-ui/core/styles";
-import { makeStyles } from "@mui/styles";
-import { HiOutlinePencilAlt } from "react-icons/hi";
+//import { makeStyles } from '@mui/styles';
 import { useNavigate } from "react-router-dom";
-import { BiSearchAlt } from "react-icons/bi";
-import "./VisitorFormContinued.css";
+import { BsPencilFill } from "react-icons/bs";
+//import "./VisitorFormContinued.css";
+import "./GuestVisitor2.css";
 import * as Icons from "react-icons/fa";
+import { BsCalendar2Date } from "react-icons/bs";
+import { HiOutlinePencilAlt } from "react-icons/hi";
 import Header from "../Header/Header";
 import { Autocomplete } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-}));
-
-const VisitorFormContinued = () => {
+import styled from "@emotion/styled";
+// const useStyles = makeStyles((theme) => ({
+//     formControl: {
+//         margin: theme.spacing(1),
+//         minWidth: 120,
+//     },
+// }));
+const GuestVisitor2 = () => {
   const [personQuery, setPersonQuery] = useState("");
   const [persons, setPersons] = useState([]);
 
@@ -53,12 +53,18 @@ const VisitorFormContinued = () => {
   const today = new Date().toISOString().substr(0, 10);
 
   const previousPage = () => {
-    Navigate(`/visitor-form`);
+    Navigate(`/guest-form`);
   };
   const nextPage = () => {
-    Navigate(`/visitor-form3`);
+    Navigate(`/guest-form3`);
   };
-
+  const RequiredTypography = styled(Typography)({
+    "&::after": {
+      content: '"*"',
+      color: "red",
+      marginLeft: 2,
+    },
+  });
   return (
     <div className="visitor-form-continued">
       <Header />
@@ -72,28 +78,6 @@ const VisitorFormContinued = () => {
           padding={5}
         >
           <Typography marginLeft="32px" fontFamily={"Roboto, sans-serif"}>
-            Building Visitor ID
-          </Typography>
-          <TextField
-            placeholder="Enter your ID"
-            id="name"
-            name="name"
-            margin="normal"
-            type="text"
-            variant="outlined"
-            required
-            sx={{ m: 1, width: "35ch" }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <Icons.FaAddressCard className="id-Icon" />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Typography marginLeft="32px" fontFamily={"Roboto, sans-serif"}>
             Company
           </Typography>
           <TextField
@@ -103,7 +87,6 @@ const VisitorFormContinued = () => {
             margin="normal"
             type="text"
             variant="outlined"
-            required
             sx={{ m: 1, width: "35ch" }}
             InputProps={{
               startAdornment: (
@@ -115,9 +98,15 @@ const VisitorFormContinued = () => {
               ),
             }}
           />
-          <Typography marginLeft="32px" fontFamily={"Roboto, sans-serif"}>
-            Date of visit
-          </Typography>
+          <RequiredTypography
+            marginLeft="32px"
+            variant="subtitle1"
+            component="label"
+            fontFamily={"Roboto, sans-serif"}
+          >
+            Start Date
+          </RequiredTypography>
+
           <TextField
             className="calender_date"
             disabled
@@ -128,13 +117,26 @@ const VisitorFormContinued = () => {
             name="name"
             margin="normal"
             variant="outlined"
-            required
             sx={{ m: 1, width: "35ch" }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start"></InputAdornment>
-              ),
-            }}
+          />
+          <RequiredTypography
+            marginLeft="32px"
+            variant="subtitle1"
+            component="label"
+            fontFamily={"Roboto, sans-serif"}
+          >
+            End Date
+          </RequiredTypography>
+
+          <TextField
+            className="calender_date"
+            placeholder="Select date"
+            type="date"
+            id="todayDate"
+            name="name"
+            margin="normal"
+            variant="outlined"
+            sx={{ m: 1, width: "35ch" }}
           />
 
           <Typography marginLeft="32px" fontFamily={"Roboto, sans-serif"}>
@@ -147,7 +149,6 @@ const VisitorFormContinued = () => {
             margin="normal"
             type="text"
             variant="outlined"
-            required
             sx={{ m: 1, width: "35ch" }}
             InputProps={{
               endAdornment: (
@@ -175,9 +176,9 @@ const VisitorFormContinued = () => {
             renderInput={(params) => (
               <TextField
                 {...params}
+                sx={{ m: 1, width: "35ch" }}
                 placeholder="Search person"
                 variant="outlined"
-                sx={{ m: 1, width: "35ch" }}
                 onChange={(event) => {
                   setPersonQuery(event.target.value);
                 }}
@@ -241,4 +242,4 @@ const VisitorFormContinued = () => {
     </div>
   );
 };
-export default VisitorFormContinued;
+export default GuestVisitor2;

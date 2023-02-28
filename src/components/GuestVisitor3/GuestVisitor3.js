@@ -8,13 +8,13 @@ import { PhotoCamera } from "@material-ui/icons";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Typography, Box } from "@mui/material";
-import "./VisitorForm3.css";
+import "./GuestVisitor3.css";
 import * as Icons from "react-icons/fa";
 import Header from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
 import styled from "@emotion/styled";
-const VisitorForm3 = () => {
+const GuestVisitor3 = () => {
   const webcamRef = useRef(null); // reference to the webcam component
   const [image, setImage] = useState(null); // state to store the captured image
 
@@ -69,7 +69,7 @@ const VisitorForm3 = () => {
     Navigate(`/checked-in-page`);
   };
   const previousPage = () => {
-    Navigate(`/visitor-form-continued`);
+    Navigate(`/guest-form2`);
   };
   const RequiredTypography = styled(Typography)({
     "&::after": {
@@ -175,14 +175,13 @@ const VisitorForm3 = () => {
             </Paper>
             <div className="capture-buttons">
               <Button
+                variant="contained"
                 sx={{
                   backgroundColor: "#e9b30b",
                   "&:hover": {
                     backgroundColor: "#584bc7",
                   },
                 }}
-                variant="contained"
-                color="primary"
                 onClick={capture}
               >
                 Capture
@@ -296,4 +295,4 @@ const VisitorForm3 = () => {
     </div>
   );
 };
-export default VisitorForm3;
+export default GuestVisitor3;

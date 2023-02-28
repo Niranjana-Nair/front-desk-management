@@ -1,0 +1,10 @@
+.camera-Icon {
+    background: linear-gradient(to right, #2745d5 0%, #866bbd 100%);
+    border-radius: 50%;
+    color: white;
+    padding: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
