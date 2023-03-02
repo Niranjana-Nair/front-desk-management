@@ -19,7 +19,8 @@ import "./VisitorFormContinued.css";
 import * as Icons from "react-icons/fa";
 import Header from "../Header/Header";
 import { Autocomplete } from "@material-ui/core";
-
+import { Context } from "../../Context";
+import { useContext } from 'react';
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -58,6 +59,7 @@ const VisitorFormContinued = () => {
   const nextPage = () => {
     Navigate(`/visitor-form3`);
   };
+  const { formData, setFormData } = useContext(Context);
 
   return (
     <div className="visitor-form-continued">
@@ -75,9 +77,11 @@ const VisitorFormContinued = () => {
             Building Visitor ID
           </Typography>
           <TextField
+          onChange={(e) =>  setFormData({...formData, buildingPass:e.target.value}) }
+          value={formData.buildingPass}
             placeholder="Enter your ID"
-            id="name"
-            name="name"
+            id="buildingPass"
+            name="buildingPass"
             margin="normal"
             type="text"
             variant="outlined"
@@ -93,13 +97,40 @@ const VisitorFormContinued = () => {
               ),
             }}
           />
+            <Typography marginLeft="32px" fontFamily={"Roboto, sans-serif"}>
+             Visitor pass ID
+          </Typography>
+          <TextField
+          onChange={(e) =>  setFormData({...formData, visitorPass:e.target.value}) }
+          value={formData.visitorPass}
+            placeholder="Enter visitor pass ID"
+            id="visitorPass"
+            name="visitorPass"
+            margin="normal"
+            type="text"
+            variant="outlined"
+            required
+            sx={{ m: 1, width: "35ch" }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <Icons.FaAddressCard className="id-Icon" />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          
           <Typography marginLeft="32px" fontFamily={"Roboto, sans-serif"}>
             Company
           </Typography>
           <TextField
+            onChange={(e) =>  setFormData({...formData, company:e.target.value}) }
+            value={formData.company}
             placeholder="Enter your organisation name"
-            id="name"
-            name="name"
+            id="company"
+            name="company"
             margin="normal"
             type="text"
             variant="outlined"
@@ -119,13 +150,14 @@ const VisitorFormContinued = () => {
             Date of visit
           </Typography>
           <TextField
+         
             className="calender_date"
             disabled
             placeholder="Select date"
             type="date"
             defaultValue={today}
-            id="todayDate"
-            name="name"
+            id="fromDate"
+            name="fromDate"
             margin="normal"
             variant="outlined"
             required
@@ -141,9 +173,11 @@ const VisitorFormContinued = () => {
             Purpose of visit
           </Typography>
           <TextField
+          onChange={(e) =>  setFormData({...formData, purpose:e.target.value}) }
+          value={formData.purpose}
             placeholder="Specify purpose"
-            id="name"
-            name="name"
+            id="purpose"
+            name="purpose"
             margin="normal"
             type="text"
             variant="outlined"
@@ -163,27 +197,26 @@ const VisitorFormContinued = () => {
           <Typography marginLeft="32px" fontFamily={"Roboto, sans-serif"}>
             Person to meet
           </Typography>
-          <Autocomplete
-            popupIcon=""
-            options={persons}
-            getOptionLabel={(option) => option.name}
-            getOptionSelected={(option, value) => option.id === value.id}
-            filterOptions={filterOptions}
-            onChange={(event, newValue) => {
-              setPersonQuery(newValue ? newValue.name : "");
+          <TextField
+            onChange={(e) =>  setFormData({...formData, host:e.target.value}) }
+            value={formData.host}
+            placeholder="Search here...."
+            id="host"
+            name="host"
+            margin="normal"
+            type="text"
+            variant="outlined"
+            required
+            sx={{ m: 1, width: "35ch" }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <Icons.FaUser className="user-Icon" />
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder="Search person"
-                variant="outlined"
-                sx={{ m: 1, width: "35ch" }}
-                onChange={(event) => {
-                  setPersonQuery(event.target.value);
-                }}
-                value={personQuery}
-              />
-            )}
           />
           <div className="previous-and-back-btns">
             <Button

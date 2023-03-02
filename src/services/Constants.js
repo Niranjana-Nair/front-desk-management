@@ -1,0 +1,5 @@
+export const AddVisitor_url = "https://localhost:7194/api/Visitors/AddVisitor"
+// export const AddGuest_url = "https://localhost:7194/api/Guest/AddGuest"
+// export const AddEmployeeContractor_url = "https://localhost:7194/api/Contractor/AddEmployeeContractor"
+// export const AddLongTermContractor_url = "https://localhost:7194/api/Contractor/AddLongTermContractor"
+// export const AddOthersContractor_url = "https://localhost:7194/api/Contractor/AddOthersContractor"

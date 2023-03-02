@@ -1,4 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Clear, Save } from "@material-ui/icons";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  CardMedia,
+} from "@material-ui/core";
 import {
   Box,
   Button,
@@ -20,7 +29,32 @@ import Header from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
 import styled from "@emotion/styled";
+import Webcam from "react-webcam";
 const EmployeeForm = () => {
+  const [open, setOpen] = useState(false);
+  const [capturedImage, setCapturedImage] = useState(null);
+  const [savedImage, setSavedImage] = useState(null);
+  const webcamRef = React.useRef(null);
+
+  const handleCapture = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setCapturedImage(imageSrc);
+  };
+
+  const handleSave = () => {
+    setSavedImage(capturedImage);
+    handleClose();
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setCapturedImage(null);
+  };
+
   const [personQuery, setPersonQuery] = useState("");
   const [persons, setPersons] = useState([]);
 
@@ -50,11 +84,21 @@ const EmployeeForm = () => {
   const previousPage = () => {
     Navigate(`/`);
   };
+  const [signature, setSignature] = useState(null);
   const signatureRef = useRef(null);
 
-  const clearSignature = () => {
+  const handleClear = () => {
     signatureRef.current.clear();
+    setSignature(null);
   };
+
+  const handleSavesignature = () => {
+    if (signatureRef.current.isEmpty()) {
+      return;
+    }
+    setSignature(signatureRef.current.toDataURL());
+  };
+
   const [checked, setChecked] = useState(false); // state to keep track of checkbox state
   const [isChecked, setIsChecked] = useState(false);
 
@@ -62,11 +106,6 @@ const EmployeeForm = () => {
     setIsChecked(event.target.checked);
   };
 
-  const saveSignature = () => {
-    const signatureImage = signatureRef.current.toDataURL();
-    // Save the signature image to a database or send it to a server
-    console.log(signatureImage);
-  };
   const RequiredTypography = styled(Typography)({
     "&::after": {
       content: '"*"',
@@ -86,7 +125,82 @@ const EmployeeForm = () => {
           marginTop={3}
           padding={5}
         >
-          <HiOutlineCamera className="camera-Icon" size={"10ch"} />
+          <>
+            {!savedImage && (
+              <>
+                {!capturedImage && (
+                  <IconButton className="camera-Button" onClick={handleClickOpen}>
+                    <HiOutlineCamera className="camera-Icon" size={"10ch"} />
+                  </IconButton>
+                )}
+                {capturedImage && (
+                  <div onClick={handleClickOpen}>
+                    <CardMedia
+                      component="img"
+                      alt="Captured Image"
+                      image={capturedImage}
+                    />
+                  </div>
+                )}
+              </>
+            )}
+            {savedImage && (
+              <CardMedia component="img" alt="Saved Image" image={savedImage} />
+            )}
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle>Take a photo</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  Please click the capture button to take a photo.
+                </DialogContentText>
+                {capturedImage ? (
+                  <CardMedia
+                    component="img"
+                    alt="Captured Image"
+                    image={capturedImage}
+                  />
+                ) : (
+                  <Webcam
+                    audio={false}
+                    ref={webcamRef}
+                    screenshotFormat="image/jpeg"
+                  />
+                )}
+              </DialogContent>
+              <DialogActions>
+                {!capturedImage && (
+                  <Button onClick={handleClose}>Cancel</Button>
+                )}
+                {capturedImage && (
+                  <Button
+                    onClick={handleClose}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Close
+                  </Button>
+                )}
+                {!capturedImage && (
+                  <Button
+                    onClick={handleCapture}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Capture
+                  </Button>
+                )}
+                {capturedImage && (
+                  <Button
+                    onClick={handleSave}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Save
+                  </Button>
+                )}
+              </DialogActions>
+            </Dialog>
+          </>
           <Typography
             fontFamily={"Roboto, sans-serif"}
             variant="h4"
@@ -188,22 +302,49 @@ const EmployeeForm = () => {
             Signature
           </RequiredTypography>
 
-          <div className="signature-canvas">
-            <SignatureCanvas
-              ref={signatureRef}
-              penColor="black"
-              canvasProps={{ width: 300, height: 200, className: "sigCanvas" }}
-              style={{ border: "1px solid black" }}
-            />
-            <div className="clear-save-btns">
-              <button className="clear-btn" onClick={clearSignature}>
-                Clear
-              </button>
-              <button className="save-btn" onClick={saveSignature}>
-                Save
-              </button>
-            </div>
-          </div>
+          <>
+            {!signature && (
+              <div style={{ border: "1px solid black", height: 200 }}>
+                <SignatureCanvas
+                  ref={signatureRef}
+                  canvasProps={{ width: 500, height: 200 }}
+                />
+                <Button
+                  onClick={handleClear}
+                  variant="contained"
+                  color="secondary"
+                >
+                  <Clear />
+                  Clear
+                </Button>
+                <Button
+                  onClick={handleSavesignature}
+                  variant="contained"
+                  color="primary"
+                >
+                  <Save />
+                  Save
+                </Button>
+              </div>
+            )}
+            {signature && (
+              <>
+                <CardMedia
+                  component="img"
+                  alt="Saved Signature"
+                  image={signature}
+                  style={{ maxWidth: 500 }}
+                />
+                <Button
+                  onClick={() => setSignature(null)}
+                  variant="contained"
+                  color="primary"
+                >
+                  Clear Signature
+                </Button>
+              </>
+            )}
+          </>
           <div className="declaration-field">
             <FormControlLabel
               control={

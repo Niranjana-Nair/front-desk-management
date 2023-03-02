@@ -1,4 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Clear, Save } from "@material-ui/icons";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  CardMedia,
+} from "@material-ui/core";
 import {
   Box,
   Button,
@@ -46,24 +55,20 @@ const ExistingContractorForm = () => {
   const previousPage = () => {
     Navigate(`/`);
   };
+  const [signature, setSignature] = useState(null);
   const signatureRef = useRef(null);
 
-  const clearSignature = () => {
+  const handleClear = () => {
     signatureRef.current.clear();
-  };
-  const [checked, setChecked] = useState(false); // state to keep track of checkbox state
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
+    setSignature(null);
   };
 
-  const saveSignature = () => {
-    const signatureImage = signatureRef.current.toDataURL();
-    // Save the signature image to a database or send it to a server
-    console.log(signatureImage);
+  const handleSavesignature = () => {
+    if (signatureRef.current.isEmpty()) {
+      return;
+    }
+    setSignature(signatureRef.current.toDataURL());
   };
-
   const RequiredTypography = styled(Typography)({
     "&::after": {
       content: '"*"',
@@ -106,8 +111,7 @@ const ExistingContractorForm = () => {
             Name
           </RequiredTypography>
           <Autocomplete
-          popupIcon=""
-          
+            popupIcon=""
             options={persons}
             getOptionLabel={(option) => option.name}
             getOptionSelected={(option, value) => option.id === value.id}
@@ -123,15 +127,6 @@ const ExistingContractorForm = () => {
                 onChange={(event) => {
                   setPersonQuery(event.target.value);
                 }}
-                InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton>
-                          <BiSearchAlt className="search-Icon" />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
                 value={personQuery}
               />
             )}
@@ -146,22 +141,37 @@ const ExistingContractorForm = () => {
             Signature
           </RequiredTypography>
 
-          <div className="signature-canvas">
-            <SignatureCanvas
-              ref={signatureRef}
-              penColor="black"
-              canvasProps={{ width: 300, height: 200, className: "sigCanvas" }}
-              style={{ border: "1px solid black" }}
-            />
-            <div className="clear-save-btns">
-              <button className="clear-btn" onClick={clearSignature}>
-                Clear
-              </button>
-              <button className="save-btn" onClick={saveSignature}>
-                Save
-              </button>
-            </div>
-          </div>
+          <>
+      {!signature && (
+        <div style={{ border: '1px solid black', height: 200 }}>
+          <SignatureCanvas
+            ref={signatureRef}
+            canvasProps={{ width: 500, height: 200 }}
+          />
+          <Button onClick={handleClear} variant="contained" color="secondary">
+            <Clear />
+            Clear
+          </Button>
+          <Button onClick={handleSavesignature} variant="contained" color="primary">
+            <Save />
+            Save
+          </Button>
+        </div>
+      )}
+      {signature && (
+        <>
+          <CardMedia
+            component="img"
+            alt="Saved Signature"
+            image={signature}
+            style={{ maxWidth: 500 }}
+          />
+          <Button onClick={() => setSignature(null)} variant="contained" color="primary">
+            Clear Signature
+          </Button>
+        </>
+      )}
+    </>
 
           <div className="previous-and-back-btns">
             <Button

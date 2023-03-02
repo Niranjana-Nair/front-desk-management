@@ -1,9 +1,10 @@
 import React from 'react'
+import AdminHeader from '../AdminHeader/AdminHeader'
 
 function ContractorForm() {
   return (
-    <div>
-      
+    <div className='contractor-page'>
+      <AdminHeader/>
     </div>
   )
 }

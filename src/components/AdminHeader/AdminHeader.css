@@ -1,23 +1,26 @@
-.user-header {
+.admin-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   background-color: #5440d3;
+  height: 90px;
 }
 
 nav {
   display: none;
 }
 
-.suyati-logo {
-  width: 40%;
-  filter: invert(1) sepia(19%) saturate(590%) hue-rotate(180deg) brightness(193%) contrast(100%);
+.swagat-logo {
+  width: 10%;
+  filter: invert(1) sepia(19%) saturate(590%) hue-rotate(180deg)
+    brightness(193%) contrast(100%);
 }
 
 @media only screen and (min-width: 768px) {
-  header {
+  .admin-header {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   nav {
@@ -35,4 +38,8 @@ nav {
   li {
     margin: 0 10px;
   }
+}
+.home-icon {
+  color: #ffff;
+
 }
